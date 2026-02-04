@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1770233306 source:c:\users\cheye\documents\tech_test\technical_test_12.02.26\part1\part1\main.c
-	"part1.h"
-
-1770233317 c:\users\cheye\documents\tech_test\technical_test_12.02.26\part1\part1\part1.h
-
-1770233394 source:c:\users\cheye\documents\tech_test\technical_test_12.02.26\part1\part1\part1.c
-	"part1.h"
-
