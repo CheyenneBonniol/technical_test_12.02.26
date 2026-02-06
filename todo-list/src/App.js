@@ -12,7 +12,7 @@ export default function App() {
     setTasks(saved);
   }, []);
 
-  // Sauvegarde à chaque modification sauf chargement de la page 
+  // Sauvegarde à chaque modification sauf chargement de la page
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -33,30 +33,58 @@ export default function App() {
     setTasks(news);
   };
 
+  const [inputState, setInputState] = useState("");
+  const handleChange = (e) => {
+    //setInputState(e.target.value);
+    console.log(e.target.closest('.uniqueTask'));
+    e.target.closest('.uniqueTask').classList.add(e.target.value)
+  };
+
+
+
+
   return (
-    <div className="container">
-      <h1>Todo - List</h1>
-      <div className="ajout-zone">
-        <label>
-          New Task
-          <input
-            type="text"
-            placeholder="add a new task"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-          />
-        </label>
-        <button onClick={addTask}>Add</button>
+    <div>
+      <h1>To-Do List</h1>
+      <div className="container">
+        <div className="addTask">
+          <h2>Create a new task</h2>
+          <label>
+            New Task
+            <input
+              type="text"
+              placeholder="add a new task"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+            />
+          </label>
+          <button onClick={addTask}>Add</button>
+        </div>
+
+        <div className="allTasks">
+          <h2>Tasks</h2>
+          <ul>
+            {tasks.map((t, index) => (
+              <div className="uniqueTask">
+                <li key={index}>
+                  <span>{t}</span>
+                </li>
+                <div className="crud">
+                  <label>
+                    <select key={index} name="state" onChange={handleChange}>
+                      <option value="todo">To Do</option>
+                      <option value="inProgress">In Progress</option>
+                      <option value="done">Done</option>
+                    </select>
+                  </label>
+                  <button>✏️</button>
+                  <button onClick={() => removeTask(index)}>❌</button>
+                </div>
+              </div>
+            ))}
+          </ul>
+        </div>
       </div>
-      <ul>
-        {tasks.map((tache, index) => (
-          <li key={index}>
-            <span>{tache}</span>
-            <button onClick={() => removeTask(index)}>X</button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
-
