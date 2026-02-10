@@ -3,4 +3,5 @@ export default interface ModelTask {
     title: string;
     state: 'Todo' | 'In Progress' | 'Done';
     categorie: string;
+    date: string;
 }

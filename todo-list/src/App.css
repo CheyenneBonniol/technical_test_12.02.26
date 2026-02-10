@@ -1,29 +1,33 @@
 html {
   background-color: black;
-  color: antiquewhite;
+  color: whitesmoke;
 }
 
-button{
+button {
   margin-left: 5px;
   background-color: rgb(255, 255, 108);
   border: 2px solid rgb(255, 255, 108);
   color: rgb(33, 0, 0);
   border-radius: 20px;
   padding: 5px 10px;
-  box-shadow:0px 0px 8px #fc0;
+  box-shadow: 0px 0px 8px #fc0;
 }
 
 h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 5px double rgb(255, 255, 255);
   box-shadow: inset 0 0 14px gold;
   border-radius: 20px;
   text-align: center;
-  color: #ffffff;
   text-shadow: #fc0 0px 0px 10px;
   padding: 10px;
 }
 
-h2{
+
+
+h2 {
   margin-top: 0;
 }
 
@@ -37,7 +41,7 @@ input {
   color: rgb(74, 74, 74);
   border-radius: 20px;
   padding: 4px 8px;
-  margin:5px;
+  margin: 5px;
 }
 
 .container {
@@ -54,24 +58,20 @@ input {
   border: 2px solid rgb(255, 255, 255);
   box-shadow: inset 0 0 10px rgb(255, 57, 57);
   border-radius: 20px;
-  color: #ffffff;
   padding: 20px;
 }
 
- input:focus {
-  outline:none;
+input:focus {
+  outline: none;
   border: 3px solid rgba(129, 2, 2);
   box-shadow: 0px 0px 5px white;
 }
 
-
-
 .allTasks {
   width: 75%;
-   border: 2px solid rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
   box-shadow: inset 0 0 15px rgb(255, 0, 0);
   border-radius: 20px;
-  color: #ffffff;
   padding: 20px;
 }
 
@@ -84,8 +84,15 @@ input {
   border-radius: 5px;
   margin-bottom: 8px;
   padding: 2px;
+  padding-left: 8px;
   font-weight: bold;
   font-size: large;
+}
+
+.taskDate{
+  margin-right: 10px;
+  font-weight: lighter;
+  font-size: 14px;
 }
 
 .uniqueTask button {
@@ -98,31 +105,61 @@ input {
   background-color: white;
   border: 1px solid white;
   border-radius: 5px;
-  margin:8px;
+  margin: 8px;
   box-shadow: 0px 0px 8px rgb(255, 255, 255, 0.8);
 }
 
-.crud{
+.crud {
   display: flex;
   align-content: space-between;
 }
 
-.todo{
+.todo {
   background-color: rgba(129, 2, 2, 0.732);
-  
 }
 
-.done{
-  background-color: rgb(29, 56, 9);
+.done {
+  background-color: rgb(122, 172, 83);
+  color:black;
 }
 
-.inProgress{
-  background-color: #fc0;
+.inProgress {
+  background-color: rgb(252, 231, 112);
+  color: black;
 }
 
-.uniqueTask .buttonCrud{
+.uniqueTask .buttonCrud {
   background-color: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.1);
   color: whitesmoke;
-  box-shadow:0px 0px 6px rgb(0, 0, 0);
+  box-shadow: 0px 0px 6px rgb(0, 0, 0);
+}
+
+
+
+
+
+.htmlLight {
+  color: black;
+  background-color: white;
+}
+
+.h1Light {
+  border: 4px double rgb(125, 125, 125);
+  box-shadow: inset 0 0 14px rgb(229, 229, 99);
+  text-shadow: rgb(255, 255, 108) 0px 0px 10px;
+}
+
+.containerLight {
+  border: 1px solid rgb(141, 25, 25);
+  box-shadow: inset 0 0 12px rgb(147, 12, 12);
+}
+
+.buttonLight {
+
+  background-color: rgba(141, 25, 25, 0.666);
+  border: 2px solid rgb(141, 25, 25, 0.3) ;
+  color: rgb(255, 255, 108);
+  
+  box-shadow: 0px 0px 8px rgb(95, 0, 0,0.8);
 }

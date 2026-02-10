@@ -7,6 +7,7 @@ export default function App() {
   const [tasks, setTasks] = useState<ModelTask[]>([]);
   const [taskTitle, setTaskTitle] = useState<string>("");
   const [taskCategorie, setTaskCategorie] = useState<string>("");
+  const [taskDate, setTaskDate] = useState<string>("");
   const isFirstRender = useRef<boolean>(true);
 
   // Récupération des tâches
@@ -31,26 +32,48 @@ export default function App() {
 
     // Créer une nouvelle tâche selon le modèle ModelTask
     const newTask: ModelTask = {
-      id: tasks.length + 1 ,
+      id: tasks.length + 1,
       title: taskTitle,
       state: "Todo",
       categorie: taskCategorie.trim() || "Général",
+      date: taskDate
     };
 
     setTasks([...tasks, newTask]);
     setTaskTitle("");
     setTaskCategorie("");
+    setTaskDate("");
   }
 
   function removeTask(id: number): void {
     setTasks(tasks.filter((task) => task.id !== id));
   }
 
+  function changeTask(
+    id: number,
+    title: string,
+    state: "Todo" | "Done" | "In Progress",
+    categorie: string,
+    date:string
+  ) {
+    setTasks(
+      tasks.map((t) => (t.id === id ? { ...t, title, state, categorie, date } : t)),
+    );
+  }
+const [isLight, setIsLight] = useState<boolean>(false);
+  function changeTheme() {
+    document.querySelector("html")?.classList.toggle("htmlLight");
+    setIsLight(!isLight);
+  
+  } 
+
   return (
     <div>
-      <h1>To-Do List</h1>
+      <h1 className={isLight ? "h1Light" : ""}>
+        To-Do List<button className={isLight ? "buttonLight" : ""} onClick={changeTheme}>Change Theme</button>
+      </h1>
       <div className="container">
-        <div className="addTask">
+        <div className={`addTask ${isLight ? "containerLight" : ""}`}>
           <h2>Create a new task</h2>
           <label>
             New Task
@@ -61,6 +84,12 @@ export default function App() {
               onChange={(e) => setTaskTitle(e.target.value)}
             />
           </label>
+
+          <label>
+            Due date
+            <input type="date" value={taskDate} onChange={(e) => setTaskDate(e.target.value)} />
+          </label>
+
           <label>
             Categorie
             <input
@@ -70,20 +99,21 @@ export default function App() {
               onChange={(e) => setTaskCategorie(e.target.value)}
             />
           </label>
-          <button onClick={addTask}>Add</button>
+          <button className={isLight ? "buttonLight" : ""} onClick={addTask}>Add</button>
         </div>
-        <div className="allTasks">
+        <div className={`allTasks ${isLight ? "containerLight" : ""}`}>
           <h2>Tasks</h2>
           <ul>
             {tasks.map((task, index) => (
-              
-                  <TodoTask
-                    task={task}
-                    removeTask={() => removeTask(task.id)}
-                    index={index}
-                  />
-                
-              
+              <TodoTask
+                task={task}
+                removeTask={() => removeTask(task.id)}
+                changeTask={(title, state, categorie, date) =>
+                  changeTask(task.id, title, state, categorie, date)
+                }
+                index={index}
+                key={index}
+              />
             ))}
           </ul>
         </div>
