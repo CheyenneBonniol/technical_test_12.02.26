@@ -6,22 +6,22 @@ interface TodoTaskProps {
   removeTask: () => void;
   changeTask: (
     title: string,
-    state: "Todo" | "Done" | "In Progress",
+    state: "Todo" | "Done" | "InProgress",
     categorie: string,
     date: string,
   ) => void;
   index: number;
+  categories: string[];
 }
 
 export default function TodoTask(props: TodoTaskProps) {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [newTaskTitle, setNewTaskTitle] = useState<string>(props.task.title);
   const [newTaskState, setNewTaskState] = useState<
-    "Todo" | "In Progress" | "Done"
+    "Todo" | "InProgress" | "Done"
   >(props.task.state);
-
-  const [newTaskCategorie] = useState<string>(props.task.categorie);
-  const [newTaskDate] = useState<string>(props.task.date);
+  const [newTaskCategorie, setNewTaskCategorie] = useState<string>(props.task.categorie);
+  const [newTaskDate, setNewTaskDate] = useState<string>(props.task.date);
 
   function removeT() {
     props.removeTask();
@@ -31,7 +31,7 @@ export default function TodoTask(props: TodoTaskProps) {
     setIsEdit(true);
   }
 
-  function saved(stateOverride?: "Todo" | "In Progress" | "Done") {
+  function saved(stateOverride?: "Todo" | "InProgress" | "Done") {
     const stateToSave = stateOverride ?? newTaskState;
     if (newTaskTitle.trim() === "") {
       setNewTaskTitle(props.task.title);
@@ -41,7 +41,7 @@ export default function TodoTask(props: TodoTaskProps) {
   }
 
   function changeTaskTest(e: React.ChangeEvent<HTMLSelectElement>) {
-    const newState = e.target.value as "Todo" | "In Progress" | "Done";
+    const newState = e.target.value as "Todo" | "InProgress" | "Done";
     setNewTaskState(newState);
     if (!isEdit) {
       saved(newState);
@@ -50,11 +50,13 @@ export default function TodoTask(props: TodoTaskProps) {
 
   function cancel() {
     setIsEdit(false);
+    setNewTaskTitle(props.task.title);
+    setNewTaskCategorie(props.task.categorie);
+    setNewTaskDate(props.task.date);
   }
 
   return (
     <div className={`uniqueTask ${newTaskState}`}>
-      
       {isEdit === true && (
         <form>
           <input
@@ -63,10 +65,16 @@ export default function TodoTask(props: TodoTaskProps) {
             value={newTaskTitle}
             onChange={(e) => setNewTaskTitle(e.target.value)}
           />
-          <button className="buttonCrud" onClick={() => saved()}>
+          <input
+            type="text"
+            placeholder="Category"
+            value={newTaskCategorie}
+            onChange={(e) => setNewTaskCategorie(e.target.value)}
+          />
+          <button className="buttonCrud" type="button" onClick={() => saved()}>
             Saved
           </button>
-          <button className="buttonCrud" onClick={cancel}>
+          <button className="buttonCrud" type="button" onClick={cancel}>
             Cancel
           </button>
         </form>
@@ -77,8 +85,9 @@ export default function TodoTask(props: TodoTaskProps) {
             <span className="taskDate">{props.task.date}</span>
           )}
           {props.task.title}
+          <span className="taskCategorie"> #{props.task.categorie.trim().toLowerCase().charAt(0).toUpperCase() + props.task.categorie.trim().toLowerCase().slice(1)}</span>
         </span>
-      )}{" "}
+      )}
       <div className="crud">
         <label>
           <select
@@ -87,9 +96,9 @@ export default function TodoTask(props: TodoTaskProps) {
             value={newTaskState}
             onChange={changeTaskTest}
           >
-            <option value="todo">To Do</option>
-            <option value="inProgress">In Progress</option>
-            <option value="done">Done</option>
+            <option value="Todo">To Do</option>
+            <option value="InProgress">In Progress</option>
+            <option value="Done">Done</option>
           </select>
         </label>
         <button onClick={edit}>✏️</button>

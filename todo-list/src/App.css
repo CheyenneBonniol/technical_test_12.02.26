@@ -1,5 +1,5 @@
 html {
-  background-color: black;
+  background-color: rgb(20, 0, 0);
   color: whitesmoke;
 }
 
@@ -25,8 +25,6 @@ h1 {
   padding: 10px;
 }
 
-
-
 h2 {
   margin-top: 0;
 }
@@ -47,8 +45,10 @@ input {
 .container {
   display: flex;
   justify-content: space-between;
+  align-items: start;
   gap: 5px;
   padding: 5px;
+  margin: 5px;
 }
 
 .addTask {
@@ -59,6 +59,20 @@ input {
   box-shadow: inset 0 0 10px rgb(255, 57, 57);
   border-radius: 20px;
   padding: 20px;
+  width: 20%;
+}
+
+.addTask label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.addTask label input {
+  margin-left: auto;
+  width: 60%;
 }
 
 input:focus {
@@ -68,14 +82,20 @@ input:focus {
 }
 
 .allTasks {
-  width: 75%;
   border: 2px solid rgb(255, 255, 255);
   box-shadow: inset 0 0 15px rgb(255, 0, 0);
   border-radius: 20px;
   padding: 20px;
+  margin-top: 20px;
+}
+
+.allTasks h2 {
+  margin-top: 5px;
 }
 
 .uniqueTask {
+  width: 95%;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   background-color: rgba(129, 2, 2, 0.732);
@@ -89,7 +109,7 @@ input:focus {
   font-size: large;
 }
 
-.taskDate{
+.taskDate {
   margin-right: 10px;
   font-weight: lighter;
   font-size: 14px;
@@ -101,7 +121,7 @@ input:focus {
   box-shadow: none;
 }
 
-.uniqueTask select {
+select {
   background-color: white;
   border: 1px solid white;
   border-radius: 5px;
@@ -114,16 +134,16 @@ input:focus {
   align-content: space-between;
 }
 
-.todo {
+.Todo {
   background-color: rgba(129, 2, 2, 0.732);
 }
 
-.done {
+.Done {
   background-color: rgb(122, 172, 83);
-  color:black;
+  color: black;
 }
 
-.inProgress {
+.InProgress {
   background-color: rgb(252, 231, 112);
   color: black;
 }
@@ -135,31 +155,143 @@ input:focus {
   box-shadow: 0px 0px 6px rgb(0, 0, 0);
 }
 
+.TasksGeneral {
+  width: 75%;
+}
 
+.filters label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.filters input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
+.filters label:nth-child(2) input[type="checkbox"]:checked {
+  background: linear-gradient(45deg, rgb(129, 2, 2), rgb(255, 255, 108));
+  border-color: #888;
+}
+
+.filters label:nth-child(3) input[type="checkbox"]:checked {
+  background-color: rgba(129, 2, 2, 0.732);
+  border-color: rgba(129, 2, 2, 0.732);
+}
+
+.filters label:nth-child(4) input[type="checkbox"]:checked {
+  background-color: rgb(252, 231, 112);
+  border-color: rgb(252, 231, 112);
+}
+
+.filters label:nth-child(5) input[type="checkbox"]:checked {
+  background-color: rgb(122, 172, 83);
+  border-color: rgb(122, 172, 83);
+}
+
+.allTasks ul {
+  list-style: none;
+  padding: 5px;
+  width: 100%;
+  height: 250px;
+  overflow-y: scroll;
+  scrollbar-color: rgb(129, 2, 2) gold;
+  scrollbar-width: thin;
+}
+
+.allTasks ul li {
+  margin-bottom: 10px;
+  cursor: grab;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.allTasks ul li:active {
+  cursor: grabbing;
+}
+
+.allTasks ul li[draggable="true"]:hover {
+  transform: scale(1.02);
+}
+
+.allTasks ul li.dragging {
+  opacity: 1;
+  transform: rotate(3deg) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #666;
+}
+
+.allTasks ul li:not(.dragging):hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+fieldset {
+  margin: 0;
+  border-radius: 10px;
+  display: flex;
+  gap: 5px;
+}
 
 .htmlLight {
   color: black;
-  background-color: white;
+  background-color: rgb(250, 250, 250);
+}
+
+.containerLight,
+.h1Light {
+  border-radius: 20px;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, rgb(129, 2, 2), rgb(255, 255, 108)) border-box;
+  border: 3px solid transparent;
+  box-shadow: none;
 }
 
 .h1Light {
-  border: 4px double rgb(125, 125, 125);
-  box-shadow: inset 0 0 14px rgb(229, 229, 99);
   text-shadow: rgb(255, 255, 108) 0px 0px 10px;
 }
 
-.containerLight {
-  border: 1px solid rgb(141, 25, 25);
-  box-shadow: inset 0 0 12px rgb(147, 12, 12);
+.buttonLight {
+  background: linear-gradient(45deg, rgb(129, 2, 2), rgb(255, 255, 108));
+  border: 4px solid transparent;
+  border-radius: 20px;
+  background:
+    linear-gradient(45deg, rgb(129, 2, 2), rgb(255, 255, 108)) padding-box,
+    linear-gradient(45deg, rgb(129, 2, 2), rgb(255, 255, 108)) border-box;
+  color: rgb(255, 255, 108);
+  box-shadow: 0px 0px 8px rgba(95, 0, 0, 0.8);
 }
 
-.buttonLight {
+.selectLight {
+  border-color: black;
+}
 
-  background-color: rgba(141, 25, 25, 0.666);
-  border: 2px solid rgb(141, 25, 25, 0.3) ;
-  color: rgb(255, 255, 108);
-  
-  box-shadow: 0px 0px 8px rgb(95, 0, 0,0.8);
+@media screen and (max-width: 780px) {
+  .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .TasksGeneral {
+    width: 100%;
+  }
+  fieldset {
+    justify-content: center;
+  }
+  .addTask {
+    align-items: center;
+    width: 90%;
+  }
+
+  button {
+    margin-left: 2px;
+  }
 }

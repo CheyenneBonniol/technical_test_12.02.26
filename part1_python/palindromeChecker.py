@@ -1,6 +1,7 @@
 def palindromeChecker(word):
-	if (type(word)!=str): #on vérifie qu'on a bien une chaine de caractere en entree
-		print("il faut une chaine de caractères")
+	if (type(word)!=str): #we check that we do have a character chain in entry
+
+		print("We need a character chain")
 		return False
 	
 	isPalindrome = True
@@ -9,7 +10,7 @@ def palindromeChecker(word):
 		transformedWord = ""
 		for char in word:
 			
-			if(char.isalpha() or char.isdigit()): #on verifie que le caractere est un chiffre ou une lettre de l'alphabet (sans regarder la casse) 
+			if(char.isalpha() or char.isdigit()): #one verifies that the character is a number or a letter of the alphabet (without looking at the case) 
 				reversedWord = char.lower() + reversedWord
 				transformedWord = transformedWord + char.lower()
 		

@@ -1,7 +1,7 @@
 export default interface ModelTask {
     id: number;
     title: string;
-    state: 'Todo' | 'In Progress' | 'Done';
+    state: 'Todo' | 'InProgress' | 'Done';
     categorie: string;
     date: string;
 }
